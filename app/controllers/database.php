@@ -18,6 +18,12 @@
 			$this->host = settings::HOST;
 			$this->db = settings::DB;
 			$this->connection = $this->connect();
+			try { 
+				$this->selectDatabase($this->db);
+			}
+			catch(PDOException $e) { 
+				$this->createDatabase($this->db); 
+			}
 		}
 		
 		public function getConnection() : object {
@@ -30,17 +36,11 @@
 		private function connect() : object {
 			$connection = new PDO('mysql:host='.$this->host, $this->user, $this->pass);
 			$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			try { 
-				$this->selectDatabase($connection, $this->db);
-			}
-			catch(PDOException $e) { 
-				$this->createDatabase($this->db); 
-			}
 			return $connection;
 		}
 		
-		private function selectDatabase(object $connection, string $db) : void {
-			$connection->exec("USE ".$db); 
+		private function selectDatabase(string $db) : void {
+			$this->connection->exec("USE ".$db); 
 		}
 		
 		private function createDatabase($db) : void {
