@@ -18,12 +18,6 @@
 			$this->host = settings::HOST;
 			$this->db = settings::DB;
 			$this->connection = $this->connect();
-			try { 
-				$this->selectDatabase($this->db);
-			}
-			catch(PDOException $e) { 
-				$this->createDatabase($this->db); 
-			}
 		}
 		
 		public function getConnection() : object {
@@ -40,14 +34,11 @@
 		}
 		
 		private function selectDatabase(string $db) : void {
-			$this->connection->exec("USE ".$db); 
+			 
 		}
 		
 		private function createDatabase($db) : void {
-			$this->connection->exec("CREATE DATABASE `$db`;
-                CREATE USER '$this->user'@'$this->host' IDENTIFIED BY '$this->pass';
-                GRANT ALL ON `$db`.* TO '$this->user'@'$this->host';
-                FLUSH PRIVILEGES;");
+		
 		}
 	}
 	

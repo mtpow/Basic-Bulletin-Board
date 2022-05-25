@@ -4,7 +4,7 @@
 	
 	require __DIR__ . '/../vendor/autoload.php';
 	
-	$router = new app\controllers\router($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
+	$router = new app\controllers\router();
 
 ?>
 
