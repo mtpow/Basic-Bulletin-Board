@@ -1,11 +1,7 @@
 <?php
 	declare(strict_types = 1);
 	error_reporting(-1);
-	
 	require __DIR__ . '/../vendor/autoload.php';
-	
-	$router = new app\controllers\router();
-
 ?>
 
 <!DOCTYPE html>
@@ -17,5 +13,9 @@
 	<link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
+<?php 
+	$router = new app\controllers\router();
+?>
+
 </body>
 </html>

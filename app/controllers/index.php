@@ -32,7 +32,7 @@
 			include dirname(__DIR__).'/views/forum_index.php';
 		}
 		
-		private function getPage() : void {
+		private function login() : void {
 		}
 	}
 ?>
