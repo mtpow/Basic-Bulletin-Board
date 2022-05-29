@@ -1,15 +1,17 @@
 <?php
 	namespace app\controllers;
+	
 	use app\modules\user;
 	use app\modules\forum;
 	
-	class index {
+	class ForumIndexController {
 		
 		private string $method;
 		private string $page;
 		private array $params;
-		private object $forum;
-		private object $user;
+		
+		private forum $forum;
+		private user $user;
 		
 		public function __construct(string $method, array $params) {
 			$this->method = $method;
@@ -23,8 +25,14 @@
 					$this->getIndex();
 					break;
 				case 'post' :
-					$this->login();
-					break;
+					if (isset($_POST['register'])) {
+						$this->register();
+						break;
+					}
+					if (isset($_POST['login'])) {
+						$this->login();
+						break;
+					}
 			}
 		}
 		
@@ -33,6 +41,11 @@
 		}
 		
 		private function login() : void {
+			echo 'login';
+		}
+		
+		private function register() : void {
+			echo 'register';
 		}
 	}
 ?>

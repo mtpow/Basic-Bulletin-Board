@@ -1,6 +1,7 @@
 <?php
 	namespace app\modules;
 	use app\controllers\database;
+	
 	class forum {
 		private string $title;
 		private database $db;

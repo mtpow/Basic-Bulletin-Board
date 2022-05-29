@@ -20,16 +20,17 @@
 		private function getPath(string $path) : array {
 			$path = strtolower($path);
 			$path = explode('/', $path);
-			$path = array_filter($path);
-			$path = array_values($path);
-			unset($path[0]);
-			unset($path[1]);
+			$path = array_filter($path, function($value) { 
+				if ($value != 'app' && $value != 'basic-bulletin-board' && $value != '') {
+					return $value;
+				}
+			});
 			$path = array_values($path);
 			return $path;
 		}
 		
 		private function getController() : string {
-			$controller = 'index';
+			$controller = 'ForumIndexController';
 			if (isset($this->path[0])) {
 					$controller = $this->path[0];
 					unset($this->path[0]);
@@ -51,7 +52,7 @@
 			if (class_exists($this->controller)) {
 				$controller = new $this->controller($this->method, $this->params);
 			} else {
-				$controller = new index($this->method, $this->params);
+				$controller = new ForumIndexController($this->method, $this->params);
 			}
 		}
 	}
