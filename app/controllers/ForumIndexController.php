@@ -4,6 +4,7 @@
 	use app\modules\user;
 	use app\modules\forum;
 	use app\modules\error;
+	use app\controllers\database;
 	use app\config\settings as settings;
 	
 	class ForumIndexController {
@@ -22,6 +23,7 @@
 			$this->params = $params;
 			$this->errors = array();
 			//var_dump(settings);
+			$this->db = database::instance();
 			$this->forum = new forum();
 			$this->user = new user();
 			

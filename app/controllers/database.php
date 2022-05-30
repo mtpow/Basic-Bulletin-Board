@@ -6,40 +6,27 @@
 	
 	class database {
 		
+		private static $instance;
 		private pdo $connection;
-		private string $db;
-		private string $user;
-		private string $password;
-		private string $host;
 		
 		public function __construct() {
-			$this->user = settings::USER;
-			$this->pass = settings::PASS;
-			$this->host = settings::HOST;
-			$this->db = settings::DB;
-			$this->connection = $this->connect();
+			$this->connection = new PDO('mysql:host='.settings::HOST, settings::USER, settings::PASS);
+			$this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$this->firstRun();
 		}
 		
-		public function getConnection() : object {
-			if ($this->connection == NULL)
-				$this->connection = $this->connect();
-			
-			return $this->connection;
-		}
-		
-		private function connect() : object {
-			$connection = new PDO('mysql:host='.$this->host, $this->user, $this->pass);
-			$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			return $connection;
+		public static function instance() : self {
+			if (self::$instance === null)
+				self::$instance = new self;
+			return self::$instance;
 		}
 		
 		private function firstRun() : void {
-			$this->connection->exec("CREATE DATABASE IF NOT EXISTS `$this->db`;
-                CREATE USER IF NOT EXISTS '$this->user'@'$this->host' IDENTIFIED BY '$this->pass';
-                GRANT ALL ON `$this->db`.* TO '$this->user'@'$this->host';
+			$this->connection->exec("CREATE DATABASE IF NOT EXISTS `settings::DB`;
+                CREATE USER IF NOT EXISTS 'settings::USER'@'settings::HOST' IDENTIFIED BY 'settings::PASS';
+                GRANT ALL ON `settings::DB`.* TO 'settings::USER'@'settings::HOST';
                 FLUSH PRIVILEGES;");
-			$this->connection->query("use ".$this->db);
+			$this->connection->query("use ".settings::DB);
 
 			$statement = "CREATE TABLE IF NOT EXISTS `users` (
 				`id` INT AUTO_INCREMENT NOT NULL,

@@ -4,11 +4,11 @@
 	
 	class forum {
 		private string $title;
-		private database $db;
+		private $db;
 		
 		public function __construct() {
 			$this->title = $this->getTitle();
-			$this->db = new database();
+			$this->db = database::instance();
 		}
 		
 		private function getTitle() : string {
