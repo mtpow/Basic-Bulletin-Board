@@ -2,15 +2,11 @@
 	namespace app\controllers;
 
 	class router {
-		
-		private string $method;
-		private string $uri;
 		private string $controller;
 		private array $path;
 		private array $params;
 		
 		public function __construct() {
-			$this->method = strtolower($_SERVER['REQUEST_METHOD']);
 			$this->path = $this->getPath($_SERVER['REQUEST_URI']);
 			$this->controller = $this->getController();
 			$this->params = $this->getParams();
@@ -34,6 +30,7 @@
 			if (isset($this->path[0])) {
 					$controller = $this->path[0];
 					unset($this->path[0]);
+					$this->path = array_values($this->path);
 			}
 			return $controller;
 		}
@@ -45,14 +42,16 @@
 					$params[] = $param;
 				}
 			}
+			if (empty($params))
+				$params[0] = '/';
 			return $params;
 		}
 		
 		private function route() : void {
 			if (class_exists($this->controller)) {
-				$controller = new $this->controller($this->method, $this->params);
+				$controller = new $this->controller($this->params);
 			} else {
-				$controller = new ForumIndexController($this->method, $this->params);
+				$controller = new ForumIndexController($this->params);
 			}
 		}
 	}

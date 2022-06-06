@@ -8,16 +8,26 @@
 </head>
 <body>
 	<div id="main">
-		<div>
-			<h1><?php //echo settings::TITLE; ?></h1>
-		</div>
-		<div>
-			<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="application/x-www-form-urlencoded" target="_self">
-				<input type="hidden" name="hidden" value="login">
-				<input type="text" name="user" value="Username"><br>
-				<input type="text" name="pass" value="Password"><br>
-				<input type="submit" name="login" value="Login">
-				<input type="submit" name="register" value="Register">
-			</form>
+		<div id="header">
+			<div id="title">
+				<h1><?php echo $this->title; ?></h1>
+			</div>
+			<div id="userpanel">
+				<?php 
+					if ($this->user->loggedIn) {
+						echo '
+							<span class="avatar"><img src="app/assets/avatars/'.$this->user->avatar.'.png" /></span>
+							<span class="username">Welcome'.$this->user->username.'</span>
+							<span class="messages">You have ('.$this->user->getMessageCount.') new messages</span>
+						';
+					} else { 
+						echo '
+							<span class="guest">Welcome Guest</span>
+							<span class="loginregister">Please <a href="/login/">Login</a> or <a href="/register/">Register</a></span>
+						';
+					}
+				?> 
+					
+			</div>
 		</div>
 	</div>
