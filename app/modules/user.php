@@ -2,10 +2,10 @@
 	namespace app\modules;
 	
 	class user {
-			public string $username;
-			public bool $loggedIn;
-			public string $avatar;
-			public int $messageCount;
+		public string $username;
+		public bool $loggedIn;
+		public string $avatar;
+		public int $messageCount;
 			
 		public function __construct() {
 			$this->loggedIn = $this->loggedIn();
@@ -22,7 +22,7 @@
 		}
 		
 		private function loggedIn() : bool {
-			if (isset($_SESSION['loggedIn']))
+			if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == TRUE)
 				return true;
 			
 			return false;
