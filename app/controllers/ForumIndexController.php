@@ -1,6 +1,8 @@
 <?php
 	namespace app\controllers;
+	
 	use app\config\settings as settings;
+	use PDO;
 	
 	class ForumIndexController extends BaseController {
 		
@@ -15,9 +17,13 @@
 					include dirname(__DIR__).'/views/Login.php';
 					break;
 				case 'register' :
-					include dirname(__DIR__).'/views/Register.php';
+					include dirname(__DIR__).'/views/ForumIndex.php';
 					break;
 				default :
+					$stmt = $this->db->connection->query("SELECT * FROM `categories`");
+					$categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+					$stmt = $this->db->connection->query("SELECT * FROM `subcategories`");
+					$subcategories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 					include dirname(__DIR__).'/views/ForumIndex.php';
 					break;
 			}

@@ -7,7 +7,7 @@
 	class database {
 		
 		private static $instance;
-		private pdo $connection;
+		public pdo $connection;
 		
 		public function __construct() {
 			$this->connection = new PDO('mysql:host='.settings::HOST, settings::USER, settings::PASS);
