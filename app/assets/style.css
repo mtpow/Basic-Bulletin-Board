@@ -8,10 +8,6 @@
 
 html {
 	background-color: #3f566b;
-	font-size: 14px;
-	color: #000000;
-	font-family: 'Bebas Neue', cursive;
-	color: #FFFFFF;
 }
 
 body {
@@ -32,6 +28,9 @@ a:hover {
 }
 
 #main {
+	font-size: 14px;
+	font-family: 'Bebas Neue', cursive;
+	color: #FFFFFF;
 	background-color: #4f6a83;
 	min-height: 600px;
 	width: 55%;
@@ -49,11 +48,15 @@ a:hover {
 #title {
 	margin: 20px 0px;
 	font-size: 72px;
+	font-family: 'Bebas Neue', cursive;
+	color: #FFFFFF;
 	float: left;
 }
 
 #userpanel {
 	font-size: 16px;
+	font-family: 'Bebas Neue', cursive;
+	color: #FFFFFF;
 	float: right;
 }
 

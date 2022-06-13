@@ -1,17 +1,18 @@
 <?php
 	namespace app\modules;
-	
+
 	class error {
-		public string $error;
+		public static string $error;
 		
 		public function __construct(string $error) {
-			$this->error = $error;
+			self::$error = $error;
 			include dirname(__DIR__).'\views\error.php';
-			$this->redirect();
+			self::redirect(self::$error);
 		}
 		
-		public function redirect() : void {
-			echo '<meta http-equiv="refresh" content="5;url=index.php">';
+		public static function redirect(string $error) : void {
+			$redirect = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
+			echo '<meta http-equiv="refresh" content="5;url='.$redirect.'">';
 		}
 	}
 ?>

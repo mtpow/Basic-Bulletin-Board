@@ -3,27 +3,26 @@
 
 	class router {
 		private string $controller;
-		private array $path;
 		private array $params;
 		
-		public function __construct() {
-			$this->params = $this->getParams($_SERVER['REQUEST_URI']);
-			$this->route();
+		public function __construct(string $path) {
+			$this->params = explode('/', strtolower($path));
+			$this->params = array_values(array_filter($this->params));
+			$this->params[0] = empty($this->params[0]) ? '/' : $this->params[0]; //hack
+			$this->controller = $this->params[0];
+			unset($this->params[0]);
+			$this->params = array_values($this->params);
+			$this->route($this->controller, $this->params);
 		}
 		
-		private function getParams(string $path) : array {
-			$path = strtolower($path);
-			$path = explode('/', $path);
-			$path = array_values(array_filter($path));
-			$path[0] = empty($path[0]) ? '/' : $path[0];
-			$this->controller = $path[0];
-			return $path;
-		}
-		
-		private function route() : void {
-			switch($this->controller) {
+		private function route(string $controller, array $params) : void {
+			switch($controller) {
 				default :
-					$controller = new ForumIndexController($this->params);
+					$controller = new ForumIndexController($params);
+					break;
+				case 'category' :
+					$controller = new ThreadController($params);
+					break;
 			}
 		}
 	}

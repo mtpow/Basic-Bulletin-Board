@@ -10,7 +10,7 @@
 		foreach($subcategories as $subcategory) {
 			if ($subcategory['cat_id'] == $category['id'])
 				echo "<div class='subcategory'>
-					<span class='subcategoryname'><a href='/subcategory/".$subcategory['cat_id']."/'>".$subcategory['name']."</a></span>
+					<span class='subcategoryname'><a href='/category/".$subcategory['id']."/'>".$subcategory['name']."</a></span>
 					<span class='threads'>".$subcategory['threads']."</span>
 					<span class='posts'>".$subcategory['posts']."</span>
 				</div>";
