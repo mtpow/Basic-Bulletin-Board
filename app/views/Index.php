@@ -8,11 +8,11 @@
 			<span class='postcount'>Posts</span>
 		</div>";
 		foreach($subcategories as $subcategory) {
-			if ($subcategory['cat_id'] == $category['id'])
+			if ($subcategory['cat_id'] == $category['name'])
 				echo "<div class='subcategory'>
-					<span class='subcategoryname'><a href='/category/".$subcategory['id']."/'>".$subcategory['name']."</a></span>
-					<span class='threads'>".$subcategory['threads']."</span>
-					<span class='posts'>".$subcategory['posts']."</span>
+					<span class='subcategoryname'><a href='".$subcategory['name']."/'>".$subcategory['name']."</a></span>
+					<span class='subcategorythreads'>".$subcategory['threads']."</span>
+					<span class='subcategoryposts'>".$subcategory['posts']."</span>
 				</div>";
 		}
 	}

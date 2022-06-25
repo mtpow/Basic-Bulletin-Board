@@ -79,10 +79,9 @@ a:hover {
 }
 
 #useravatar {
-	margin-top: 30px;
+	padding-top: 42px;
 	margin-right: 15px;
 	float: right;
-	border: 1px solid #1d242a;
 }
 
 #categories {
@@ -113,7 +112,22 @@ a:hover {
 	width: 15%;
 }
 
+.viewcount {
+	font-size: 16px;
+	float: left;
+	width: 15%;
+}
+
 .subcategory {
+	float: left;
+	width: 100%;
+	height: 55px;
+	line-height: 55px;
+	background-color: #3f566b;
+	margin-bottom: 15px;
+}
+
+.thread {
 	float: left;
 	width: 100%;
 	height: 55px;
@@ -129,14 +143,115 @@ a:hover {
 	padding-left: 15px;
 }
 
-.threads {
+.subcategorythreads {
 	font-size: 14px;
 	float: left;
 	width: 14%;
 }
 
-.posts {
+.subcategoryposts {
 	font-size: 14px;
 	float: left;
 	width: 13%;
+}
+
+.columns {
+	float: left;
+	width: 100%;
+	font-size: 16px;
+}
+
+.column:first-child {
+	width: 60%;
+	text-align: left;
+}
+
+.column {
+	width: 13%;
+	float: left;
+	text-align: center;
+}
+
+.threadtitle {
+	width: 60%;
+	float: left;
+	padding-left: 15px;
+}
+
+.threadauthor {
+	width: 13%;
+	float: left;
+	text-align: center;
+}
+
+.threadposts {
+	width: 13%;
+	float: left;
+	text-align: center;
+}
+
+.threadviews {
+	width: 13%;
+	float: left;
+	text-align: center;
+}
+
+.post {
+	float: right;
+	width: 85%;
+	min-height: 55px;
+	background-color: #3f566b;
+	margin-bottom: 15px;
+	padding: 15px;
+}
+
+.postauthor {
+	clear: both;
+	float: left;
+	width: 15%;
+	background-color: #3f566b;
+	height: 55px;
+	line-height: 55px;
+}
+.postavatar {
+	float: left;
+	padding: 10px 0px 0px 15px;
+}
+
+.postusername {
+	margin-left: 10px;
+}
+.postnumber {
+	float: left;
+}
+.postdate {
+	float: right;
+}
+.posttext{
+	clear: both;
+	float: left;
+	font-family: Verdana;
+	font-size: 12px;
+}
+
+.username {
+	text-align: center;
+	float: left;
+	width: 25%;
+}
+
+.userposts {
+	text-align: center;
+	float: left;
+	width: 25%;
+}
+.userthreads {
+	text-align: center;
+	float: left;
+	width: 25%;
+}
+.userdate {
+	text-align: center;
+	float: left;
+	width: 25%;
 }
